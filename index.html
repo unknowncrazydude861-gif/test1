@@ -13,14 +13,12 @@
 </head>
 <body>
   <div class="loader"><div class="loader-mark">IPA</div><div class="loader-line"><span></span></div></div>
-  <div class="grain"></div>
-  <div class="cursor"></div>
-
+  <div class="grain"></div><div class="cursor"></div>
   <header class="nav">
     <a class="brand" href="#home"><span class="brand-mark">IPA</span><span><b>IPA CHURCH</b><small>ELAPPARA</small></span></a>
     <button class="menu" aria-label="Open menu"><i></i><i></i></button>
     <nav>
-      <a href="#home">Home</a><a href="#about">About</a><a href="#worship">Worship</a><a href="#pastor">Pastor</a><a href="#ministries">Ministries</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#about">About</a><a href="#worship">Worship</a><a href="#pastor">Pastor</a><a href="#ministries">Ministries</a><a href="#doubts">Doubts</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
     </nav>
     <a class="nav-cta" href="#contact">Plan a visit <span>↗</span></a>
   </header>
@@ -66,6 +64,29 @@
       </div>
     </section>
 
+    <section id="doubts" class="section doubts">
+      <div class="section-head reveal"><span class="index">03</span><p class="eyebrow">ASK WITHOUT FEAR</p><h2>Doubts & <em>Clarifications.</em></h2><p class="section-intro">Have a question about the Bible, faith, prayer, Christian life or church? Ask freely. Our church team can review your question and provide a thoughtful answer grounded in God's Word.</p></div>
+      <div class="doubts-grid">
+        <div class="doubt-form-card reveal">
+          <div class="form-heading"><span>ASK A QUESTION</span><i>✦</i></div>
+          <form id="doubtForm">
+            <label>Name<input name="name" type="text" placeholder="Your name" required></label>
+            <label>Email or phone<input name="contact" type="text" placeholder="How we can reach you" required></label>
+            <label>Category<select name="category"><option>Bible</option><option>Faith & Christian life</option><option>Prayer</option><option>Youth</option><option>Church & ministry</option><option>Other</option></select></label>
+            <label>Your doubt<textarea name="question" rows="6" placeholder="Write your question here..." required></textarea></label>
+            <button class="btn btn-gold" type="submit">Submit question <span>→</span></button>
+            <p class="form-status" id="doubtStatus" aria-live="polite"></p>
+          </form>
+          <p class="moderation-note">Questions are reviewed by the church team before an answer is published.</p>
+        </div>
+        <div class="answered-card reveal">
+          <div class="form-heading"><span>ANSWERED QUESTIONS</span><i>01</i></div>
+          <article class="answered-item"><small>BIBLE · SAMPLE</small><h3>Why should we pray if God already knows what we need?</h3><p>Prayer is more than giving God information. It is an invitation to fellowship with Him, align our hearts with His will and bring our needs before Him with faith.</p><span>Answered by: Church Team</span></article>
+          <article class="answered-item"><small>COMING SOON</small><h3>Your approved questions can appear here.</h3><p>Once the church team reviews a submitted question, the approved answer can be displayed publicly for others to learn from as well.</p><span>Moderated by: IPA Church Elappara</span></article>
+        </div>
+      </div>
+    </section>
+
     <section id="gallery" class="section gallery">
       <div class="gallery-top reveal"><div><p class="eyebrow">MOMENTS TO REMEMBER</p><h2>Life at <em>IPA.</em></h2></div><span>01 — 04</span></div>
       <div class="gallery-stage"><div class="gallery-card card-1 photo-slot church-photo"><div class="photo-note">Church exterior<br><small>add images/church-bg.jpg</small></div></div><div class="gallery-card card-2 photo-slot"><div class="photo-note">Add gallery photo</div></div><div class="gallery-card card-3 photo-slot"><div class="photo-note">Add gallery photo</div></div><div class="gallery-card card-4 photo-slot"><div class="photo-note">Add gallery photo</div></div></div>
@@ -76,7 +97,6 @@
       <div class="contact-panel reveal"><div><small>PHONE</small><a href="tel:+919447687442">+91 94476 87442</a><a href="tel:+919446137925">+91 94461 37925</a><a href="tel:04869299492">04869 299492</a></div><div><small>EMAIL</small><a href="mailto:felixelaparra@gmail.com">felixelaparra@gmail.com</a></div><div><small>LOCATION</small><p>IPA Church Elappara<br>Elappara, Idukki, Kerala</p></div></div>
     </section>
   </main>
-
   <footer><span>© <span id="year"></span> IPA Church Elappara</span><span>WORSHIP · GROW · SERVE · IMPACT</span></footer>
   <script src="script.js"></script>
 </body>
