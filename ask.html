@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="Ask AI — Bible, faith and Christian life questions for IPA Church Elappara.">
+  <title>Ask AI · IPA Church Elappara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ai-page">
+  <div class="grain"></div><div class="cursor"></div>
+  <header class="nav">
+    <a class="brand" href="index.html"><span class="brand-mark">IPA</span><span><b>IPA CHURCH</b><small>ELAPPARA</small></span></a>
+    <a class="nav-cta" href="index.html">← Back to church</a>
+  </header>
+
+  <main class="ai-main">
+    <section class="ai-hero">
+      <p class="eyebrow">DOUBTS & CLARIFICATIONS · AI ASSISTANT</p>
+      <h1>Ask a question.<br><em>Seek understanding.</em></h1>
+      <p>Ask questions about the Bible, faith, prayer, Christian life and other spiritual topics. The assistant is an AI tool designed to provide helpful, Scripture-aware explanations.</p>
+    </section>
+
+    <section class="ai-shell" aria-label="AI question and answer">
+      <div class="ai-topbar"><div><span class="status-dot"></span><b>IPA Ask AI</b><small>AI assistant · not a pastor or human counsellor</small></div><button id="clearChat" class="ghost-btn" type="button">Clear chat</button></div>
+      <div id="chat" class="chat" aria-live="polite">
+        <article class="message assistant"><span class="message-label">AI</span><div><p>Hello! What would you like to understand?</p><div class="suggestions"><button type="button" data-question="What does the Bible say about forgiveness?">Forgiveness</button><button type="button" data-question="Why should Christians pray?">Prayer</button><button type="button" data-question="What does it mean to have faith?">Faith</button><button type="button" data-question="How can I start reading the Bible?">Bible reading</button></div></div></article>
+      </div>
+      <form id="aiForm" class="ai-input-row">
+        <label class="sr-only" for="question">Ask your question</label>
+        <textarea id="question" name="question" rows="2" placeholder="Ask your question..." required></textarea>
+        <button class="send-btn" type="submit" aria-label="Send question">↑</button>
+      </form>
+      <p id="aiStatus" class="ai-status" aria-live="polite"></p>
+    </section>
+
+    <div class="ai-note"><strong>Important:</strong> AI answers can be incomplete or mistaken. For personal pastoral guidance, sensitive situations, or matters requiring spiritual discernment, please contact the church leadership directly.</div>
+  </main>
+  <script>
+    const chat=document.getElementById('chat');
+    const form=document.getElementById('aiForm');
+    const input=document.getElementById('question');
+    const status=document.getElementById('aiStatus');
+    const clear=document.getElementById('clearChat');
+    const suggestions=[...document.querySelectorAll('[data-question]')];
+    const addMessage=(role,text)=>{const article=document.createElement('article');article.className=`message ${role}`;article.innerHTML=`<span class="message-label">${role==='user'?'YOU':'AI'}</span><div><p></p></div>`;article.querySelector('p').textContent=text;chat.appendChild(article);chat.scrollTop=chat.scrollHeight};
+    const localAnswer=q=>{const x=q.toLowerCase();if(x.includes('forgiv'))return 'The Bible presents forgiveness as a central part of Christian life. Jesus teaches His followers to forgive others, and Ephesians 4:32 calls believers to be kind and forgiving because God has forgiven us in Christ. Forgiveness does not mean ignoring injustice; it means releasing personal vengeance and choosing grace.';if(x.includes('pray'))return 'Prayer is fellowship with God, not only a way to ask for things. Jesus teaches His disciples to pray in Matthew 6:6–13, and 1 Thessalonians 5:17 encourages believers to pray continually. Prayer can include worship, thanksgiving, confession, intercession and asking for wisdom.';if(x.includes('faith'))return 'Biblical faith is trusting God and responding to Him with confidence. Hebrews 11:1 describes faith in terms of confidence in what is hoped for and assurance about what is not seen. Faith is not blind optimism; it rests on God’s character and promises.';if(x.includes('read')&&x.includes('bible'))return 'A simple place to begin is the Gospel of John. Read a small section each day, note what it teaches about God and Jesus, and pray for understanding. Compare what you read with the wider teaching of Scripture rather than building a belief on one isolated verse.';return 'This page is ready for a real AI backend, but the current GitHub Pages version does not expose a secure AI API key. For now, I can give a limited starter response to common Bible questions. To enable full AI answers, connect this page to a secure serverless API or backend such as Vercel Functions or Supabase Edge Functions.'};
+    const ask=q=>{addMessage('user',q);status.textContent='Thinking…';setTimeout(()=>{addMessage('assistant',localAnswer(q));status.textContent='';},450)};
+    form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;input.value='';ask(q)});
+    suggestions.forEach(b=>b.addEventListener('click',()=>ask(b.dataset.question)));
+    clear.addEventListener('click',()=>{chat.innerHTML='<article class="message assistant"><span class="message-label">AI</span><div><p>Hello! What would you like to understand?</p></div></article>';input.focus()});
+  </script>
+</body>
+</html>
